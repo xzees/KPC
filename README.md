@@ -1,2 +1,0 @@
-# KPC
-Created with CodeSandbox
