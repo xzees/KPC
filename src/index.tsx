@@ -1,17 +1,18 @@
 import * as React from "react";
 import { render } from "react-dom";
-import Heading from "./Heading";
+import { Provider } from "react-redux";
+import configureStore from "./store";
+import App from "./App";
 
 import "./styles.css";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <Heading>React + TypeScript + Styled-Components</Heading>
-    </div>
-  );
-}
+const store = configureStore();
+
+const Root = () => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
 
 const rootElement = document.getElementById("root");
-render(<App />, rootElement);
+render(<Root />, rootElement);
