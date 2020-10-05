@@ -5,14 +5,21 @@
   "keywords": [],
   "main": "src/index.tsx",
   "dependencies": {
+    "@material-ui/core": "4.11.0",
+    "@types/material-ui": "0.21.8",
+    "@types/react": "16.9.50",
+    "@types/react-dom": "16.9.8",
     "@types/react-redux": "7.1.9",
+    "@types/react-tap-event-plugin": "0.0.30",
+    "material-ui": "0.20.2",
     "react": "16.8.4",
     "react-dom": "16.8.4",
     "react-icons": "3.8.0",
     "react-redux": "7.2.1",
     "react-scripts": "2.1.3",
     "redux": "4.0.5",
-    "styled-components": "4.4.1"
+    "styled-components": "4.4.1",
+    "tslint-react": "5.0.0"
   },
   "devDependencies": {
     "@types/react": "16.8.8",
