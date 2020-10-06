@@ -10,5 +10,9 @@ const useStyles = makeStyles((theme) => ({
 export default function ComplexGrid(props: any) {
   const classes = useStyles();
 
-  return <div className={classes.root}>{props.children}</div>;
+  return (
+    <div {...props} className={classes.root}>
+      {props.children}
+    </div>
+  );
 }

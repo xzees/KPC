@@ -8,15 +8,15 @@ import Input from "components/Input";
 const Form = (props: any) => {
   const classes = useStyles();
   return (
-    <Container>
+    <Container justifyContent={"center !important"}>
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
           <form className={classes.root} noValidate autoComplete="off">
-            <Box display="flex">
+            <Box display="flex" flexWrap="wrap" width={"100% !important"}>
               <Input
                 label={"Title"}
                 req={true}
-                value={"Mr"}
+                // value={"Mr"}
                 helperText={""}
                 error={false}
                 isSelect={true}
@@ -25,7 +25,16 @@ const Form = (props: any) => {
               <Input
                 label={"Title"}
                 req={true}
-                value={"Mr"}
+                // value={"Mr"}
+                helperText={""}
+                error={false}
+                isSelect={true}
+                option={["Mr", "Ms"]}
+              />
+              <Input
+                label={"Title"}
+                req={true}
+                // value={"Mr"}
                 helperText={""}
                 error={false}
                 isSelect={true}

@@ -1,6 +1,5 @@
 import React from "react";
-import { Box } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
+import { Box, TextField } from "@material-ui/core";
 import { MenuItem } from "material-ui";
 import useStyles from "./useStyles";
 
