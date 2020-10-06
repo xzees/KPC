@@ -1,30 +1,41 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-
-const useStyles = makeStyles({
-  root: {
-    padding: "10px"
-  },
-  paper: {
-    width: "100%",
-    minHeight: "100vh"
-  },
-  card: {
-    backgroundColor: "blue"
-  }
-});
+import Container from "layout/Container";
+import { Box, Grid } from "@material-ui/core";
+import useStyles from "./useStyles";
+import Input from "components/Input";
 
 const Form = (props: any) => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <Container>
       <Paper className={classes.paper}>
-        <Card className={classes.card}></Card>
+        <Grid container spacing={2}>
+          <form className={classes.root} noValidate autoComplete="off">
+            <Box display="flex">
+              <Input
+                label={"Title"}
+                req={true}
+                value={"Mr"}
+                helperText={""}
+                error={false}
+                isSelect={true}
+                option={["Mr", "Ms"]}
+              />
+              <Input
+                label={"Title"}
+                req={true}
+                value={"Mr"}
+                helperText={""}
+                error={false}
+                isSelect={true}
+                option={["Mr", "Ms"]}
+              />
+            </Box>
+          </form>
+        </Grid>
       </Paper>
-    </div>
+    </Container>
   );
 };
 
