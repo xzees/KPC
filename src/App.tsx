@@ -30,6 +30,7 @@ function App() {
               name="lastName"
               label="Last name"
               fullWidth
+              error={true}
               autoComplete="family-name"
             />
           </Grid>
