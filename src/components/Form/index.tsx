@@ -28,8 +28,7 @@ const Form = (props: any) => {
                 // value={"Mr"}
                 helperText={""}
                 error={false}
-                isSelect={true}
-                option={["Mr", "Ms"]}
+                isSelect={false}
               />
               <Input
                 label={"Title"}
