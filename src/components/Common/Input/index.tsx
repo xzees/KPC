@@ -3,8 +3,10 @@ import { Box, TextField } from "@material-ui/core";
 import { MenuItem } from "material-ui";
 import useStyles from "./useStyles";
 
-interface InputType {
+export interface InputType {
+  [key: string]: any;
   label: string;
+  labels?: string;
   req: boolean;
   value?: string;
   helperText: string;
@@ -13,6 +15,7 @@ interface InputType {
   option?: any[] | undefined;
   isDate?: boolean;
   inputProps?: any;
+  innerRef?: any;
 }
 
 const index = (props: InputType) => {
@@ -20,13 +23,15 @@ const index = (props: InputType) => {
 
   return (
     <Box className={classes.BoxInline} p={1} m={1}>
-      <Box className={classes.label}>
-        {props.label} : {props.req && <span>*</span>}
+      <Box className={classes.BoxText} pr={1}>
+        {props.label || props.labels} : {props.req && <span>*</span>}
       </Box>
       <Box>
         <TextField
           id="standard-select-currency"
           variant="outlined"
+          innerRef={props.innerRef}
+          size="small"
           select={props.isSelect}
           type={props.isDate ? "date" : ""}
           helperText={props.helperText}

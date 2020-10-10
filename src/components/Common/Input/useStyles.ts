@@ -11,6 +11,15 @@ const useStyles = makeStyles((theme: Theme) =>
     BoxInline: {
       flexDirection: "row",
       display: "flex"
+    },
+    BoxText: {
+      display: 'flex',
+      alignItems: 'center !important',
+      // justifyContent: 'center !important',
+      "& span": {
+        color: "red",
+        paddingLeft: 5
+      }
     }
   })
 );

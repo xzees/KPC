@@ -1,5 +1,11 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core";
 
+export const BoxView = {
+  display:"flex",
+  flexWrap:"wrap",
+  width:"100% !important",
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
