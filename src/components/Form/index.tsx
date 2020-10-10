@@ -3,10 +3,12 @@ import Paper from "@material-ui/core/Paper";
 import Container from "../../layout/Container";
 import { Box, Grid } from "@material-ui/core";
 import useStyles from "./useStyles";
-import Input from "../../components/Input";
+import Input from "./Input";
 
 const Form = (props: any) => {
   const classes = useStyles();
+
+
   return (
     <Container justifyContent={"center !important"}>
       <Paper className={classes.paper}>
@@ -16,28 +18,43 @@ const Form = (props: any) => {
               <Input
                 label={"Title"}
                 req={true}
-                // value={"Mr"}
                 helperText={""}
                 error={false}
                 isSelect={true}
                 option={["Mr", "Ms"]}
               />
               <Input
-                label={"Title"}
+                label={"First Name"}
                 req={true}
-                // value={"Mr"}
                 helperText={""}
                 error={false}
                 isSelect={false}
               />
               <Input
-                label={"Title"}
+                label={"Last Name"}
                 req={true}
-                // value={"Mr"}
+                helperText={""}
+                error={false}
+                isSelect={false}
+              />
+            </Box>
+            <Box display="flex" flexWrap="wrap" width={"100% !important"}>
+              <Input
+                label={"Birthday"}
+                req={true}
+                helperText={""}
+                error={false}
+                isDate={true}
+                inputProps={{ max: new Date().toISOString().slice(0,10)
+              }}
+              />
+              <Input
+                label={"Nationality"}
+                req={false}
                 helperText={""}
                 error={false}
                 isSelect={true}
-                option={["Mr", "Ms"]}
+                option={[]}
               />
             </Box>
           </form>
