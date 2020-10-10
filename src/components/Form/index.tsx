@@ -10,20 +10,23 @@ import Birthday from "./Birthday";
 import Nationality from "./Nationality";
 import Citizen from "./Citizen";
 import Gender from "./Gender";
+import MobilePhone from "./MobilePhone";
 import { Field, reduxForm } from 'redux-form'
-import { TextField } from "material-ui";
-import { createNumberMask, createTextMask } from 'redux-form-input-masks';
-
+import { createTextMask } from 'redux-form-input-masks';
+import FormHelperText from '@material-ui/core/FormHelperText'
 
 export interface IreduxRender { 
   [key: string]: any;
-  input: any;
-  label: any;
-  meta: {
-    touched: any;
-    error: any;
-  } | undefined;
+  input?: any;
+  label?: any;
+  meta?: IError | undefined;
   custom?: any
+  rest?: any;
+}
+
+export interface IError {
+  touched: any;
+  error: any;
 }
 
 const citizenMask = createTextMask({
@@ -54,7 +57,10 @@ let Form = (props: any) => {
               <Field name="citizen_id" {...citizenMask} component={Citizen} type="text"  />
             </Box>
             <Box {...BoxView}>
-              <Gender />
+              <Field name="gender"  component={Gender} type="text"  />
+            </Box>
+            <Box {...BoxView}>
+              <MobilePhone />
             </Box>
             <button type="submit">Submit</button>
           </form>
@@ -63,6 +69,14 @@ let Form = (props: any) => {
     </Container>
   );
 };
+
+export const renderFromHelper = ({ touched, error } : IError) => {
+  if (!(touched && error)) {
+    return
+  } else {
+    return <FormHelperText>{touched && error}</FormHelperText>
+  }
+}
 
 Form = reduxForm({
   // a unique name for the form

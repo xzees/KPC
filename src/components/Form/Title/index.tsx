@@ -8,6 +8,7 @@ const index = (props : any) => {
             label={"Title"}
             req={true}
             helperText={""}
+            defaultValue={"Mr"}
             // error={props.touched || props.error}
             isSelect={true}
             option={["Mr", "Ms"]}

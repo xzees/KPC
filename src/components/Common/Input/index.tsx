@@ -2,7 +2,6 @@ import React from "react";
 import { Box, TextField } from "@material-ui/core";
 import { MenuItem } from "material-ui";
 import useStyles from "./useStyles";
-import InputMask from 'react-input-mask';
 
 export interface InputType {
   [key: string]: any;
@@ -13,6 +12,7 @@ export interface InputType {
   helperText: string;
   error?: boolean;
   isSelect?: boolean;
+  defaultValue?: any;
   option?: any[] | undefined;
   isDate?: boolean;
   inputProps?: any;
@@ -47,9 +47,19 @@ const index = (props: InputType) => {
             helperText={props.helperText}
             error={props.error}
             value={props.value}
+            defaultValue={props.defaultValue}
             inputProps={{...props.inputProps}}
             label={''}
-          />
+          >
+            {props.option && props.option.length > 0 &&
+            props.option.map((value: any, index: number) => {
+              return (
+                <MenuItem key={index} value={value}>
+                  {value}
+                </MenuItem>
+              );
+            })}
+          </TextField>
           {/* }
           </InputMask>  */}
       </Box>

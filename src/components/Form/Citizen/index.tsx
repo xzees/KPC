@@ -2,7 +2,6 @@ import React from 'react';
 import Input from '../../Common/Input';
 import { IreduxRender } from '../index'
 
-
 const index = (props: IreduxRender) => {
   
   return (

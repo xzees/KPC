@@ -9,9 +9,7 @@ const index = (props: IreduxRender) => {
     req={true}
     helperText={""}
     isSelect={false}
-
     error={props.meta!.error}
-
     {...props.input}
     {...props.custom}
     />

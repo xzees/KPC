@@ -6,8 +6,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { Box, TextField } from "@material-ui/core";
 import useStyles from '../../Common/Input/useStyles';
+import { IreduxRender } from '../index'
 
-const index = (props: any) => {
+
+const index = (props: IreduxRender) => {
     const classes = useStyles();
 
     return (
@@ -18,27 +20,26 @@ const index = (props: any) => {
             <Box>
                 <FormControl component="fieldset">
                 
-                    <RadioGroup row aria-label="position" name="position" defaultValue="top">
+                    <RadioGroup {...props.input} {...props.rest} row aria-label="position" name="position" defaultValue="top">
                         
                         <FormControlLabel
-                        value="male"
-                        control={<Radio color="primary" />}
-                        label="male"
-                        labelPlacement="end"
+                            value="male"
+                            control={<Radio color="primary" />}
+                            label="male"
+                            labelPlacement="end"
                         />
                         <FormControlLabel
-                        value="female"
-                        control={<Radio color="primary" />}
-                        label="female"
-                        labelPlacement="end"
+                            value="female"
+                            control={<Radio color="primary" />}
+                            label="female"
+                            labelPlacement="end"
                         />
                         <FormControlLabel
-                        value="unisex"
-                        control={<Radio color="primary" />}
-                        label="unisex"
-                        labelPlacement="end"
+                            value="unisex"
+                            control={<Radio color="primary" />}
+                            label="unisex"
+                            labelPlacement="end"
                         />
-                        
                     </RadioGroup>
                 </FormControl>
             </Box>
