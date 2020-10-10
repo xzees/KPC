@@ -1,15 +1,18 @@
 import React from "react";
 import Input from "../../Common/Input";
 
-const index = (props: any) => {
+
+const index = (props : any) => {
   return (
         <Input
             label={"Title"}
             req={true}
             helperText={""}
-            error={false}
+            // error={props.touched || props.error}
             isSelect={true}
             option={["Mr", "Ms"]}
+            // {...props.input}
+            // {...props.custom}
         />    
   );
 };

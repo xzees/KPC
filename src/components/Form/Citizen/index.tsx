@@ -1,23 +1,24 @@
 import React from 'react';
-import MaskedInput from '../../Common/MaskedInput';
+import Input from '../../Common/Input';
+import { IreduxRender } from '../index'
 
 
-const index = (props: any) => {
+const index = (props: IreduxRender) => {
   
   return (
-    <MaskedInput
-        mask={'0-0000-00000-00-0'}
+    <Input
         label={'Citizen ID'}
         req={false}
         helperText={''}
-        error={false}
+        error={props.meta!.error}
         inputProps={{
-          placeholder: 'x - xxxx - xxxxx - xx - x',
+          placeholder: 'x-xxxx-xxxxx-xx-x',
           style: {
             textAlign: 'center'
           }
         }}
-        
+        {...props.input}
+        {...props.custom}
     /> 
   );
 };

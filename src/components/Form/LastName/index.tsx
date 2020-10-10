@@ -1,14 +1,19 @@
 import React from "react";
 import Input from "../../Common/Input";
+import { IreduxRender } from '../index'
 
-const index = (props: any) => {
+const index = (props: IreduxRender) => {
   return (
     <Input
     label={"Last Name"}
     req={true}
     helperText={""}
-    error={false}
     isSelect={false}
+
+    error={props.meta!.error}
+
+    {...props.input}
+    {...props.custom}
     />
   );
 };
