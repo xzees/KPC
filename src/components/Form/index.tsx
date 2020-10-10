@@ -1,9 +1,9 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
-import Container from "layout/Container";
+import Container from "../../layout/Container";
 import { Box, Grid } from "@material-ui/core";
 import useStyles from "./useStyles";
-import Input from "components/Input";
+import Input from "../../components/Input";
 
 const Form = (props: any) => {
   const classes = useStyles();

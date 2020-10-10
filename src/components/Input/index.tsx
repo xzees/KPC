@@ -10,7 +10,7 @@ interface InputType {
   helperText: string;
   error?: boolean;
   isSelect?: boolean;
-  option?: any[];
+  option?: any[] | undefined;
 }
 
 const index = (props: InputType) => {
@@ -30,7 +30,7 @@ const index = (props: InputType) => {
           error={props.error}
           value={props.value}
         >
-          {props.option?.length > 0 &&
+          {props.option && props.option.length > 0 &&
             props.option.map((value: any, index: number) => {
               return (
                 <MenuItem key={index} value={value}>
