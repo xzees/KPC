@@ -2,4 +2,8 @@
 
 
 const userJson = localStorage.getItem('Storage');
-export const DEFAULT_SETTINGS = userJson !== null ? JSON.parse(userJson): [];
+const DEFAULT_SETTINGS = {
+    users: userJson !== null ? JSON.parse(userJson): []
+};
+
+export default DEFAULT_SETTINGS

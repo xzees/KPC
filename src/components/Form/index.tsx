@@ -1,6 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Form from './Form'
+import {
+  addUser
+} from '../../store/User/actions'
 
 export interface IreduxRender { 
   [key: string]: any;
@@ -22,7 +25,7 @@ let SearchContainer = ({ handleSubmits }: any) => (
 
 const mapDispatchToProps = (dispatch: any) => ({
   handleSubmits: (value: any) =>
-    dispatch({ type: 'SEARCH_CONTAINER_SUBMIT', payload: value })
+    dispatch(addUser(value))
 })
 
 export default connect(

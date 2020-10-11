@@ -9,8 +9,8 @@ const index = (props: IreduxRender) => {
         label={"Birthday"}
         req={true}
         helperText={""}
-        error={false}
-        isdate={true}
+        error="false"
+        isdate="true"
         inputProps={{ max: new Date().toISOString().slice(0,10) }}
         {...props.input}
         {...props.meta}
