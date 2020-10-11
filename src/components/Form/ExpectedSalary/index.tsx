@@ -3,7 +3,6 @@ import Input from "../../Common/Input";
 import { IreduxRender } from '../index'
 
 const index = (props: IreduxRender) => {
-  console.log(props);
   return (
     <Input
         label={"Expected Salary"}

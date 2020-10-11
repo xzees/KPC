@@ -31,7 +31,6 @@ const Input = (props: any) => {
   };
   
 const index = (props: any) => {
-    console.log(props);
     return (
         <Input
             label={"Mobile Phone"}

@@ -1,8 +1,9 @@
 import { createStore, combineReducers } from "redux";
 import { reducer as formReducer } from 'redux-form'
-
+import {userReducer} from './User/reducer';
 const rootReducer = combineReducers({
-  form: formReducer
+  form: formReducer,
+  user: userReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

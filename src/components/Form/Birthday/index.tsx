@@ -1,9 +1,8 @@
 import React from "react";
 import Input from "../../Common/Input";
-import { IreduxRender } from '../index'
+import { IreduxRender } from '../Form'
 
 const index = (props: IreduxRender) => {
-  console.log(props);
 
   return (
     <Input

@@ -4,7 +4,6 @@ import nationality from '../../../mock/nationality.json'
 import { IreduxRender } from '../index'
 
 const index = (props: IreduxRender) => {
-  console.log(props);
 
   const _array:any[] = []
   for(const value of nationality) {
@@ -17,7 +16,6 @@ const index = (props: IreduxRender) => {
         helperText={""}
         error={false}
         isSelect={true}
-        // defaultValue={'Thai'}
         option={_array}
         {...props.input}
         {...props.custom}
