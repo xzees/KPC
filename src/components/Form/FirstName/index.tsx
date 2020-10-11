@@ -13,6 +13,7 @@ const index = (props: IreduxRender) => {
         error={props.meta!.error}
         {...props.input}
         {...props.custom}
+        {...props.meta}
     />  
   );
 };

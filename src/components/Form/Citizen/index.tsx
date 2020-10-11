@@ -17,6 +17,7 @@ const index = (props: IreduxRender) => {
           }
         }}
         {...props.input}
+        {...props.meta}
         {...props.custom}
     /> 
   );

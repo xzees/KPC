@@ -11,9 +11,10 @@ const index = (props: IreduxRender) => {
         req={true}
         helperText={""}
         error={false}
-        isDate={true}
+        isdate={true}
         inputProps={{ max: new Date().toISOString().slice(0,10) }}
         {...props.input}
+        {...props.meta}
         {...props.custom}
     /> 
   );

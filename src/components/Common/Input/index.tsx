@@ -7,14 +7,14 @@ export interface InputType {
   [key: string]: any;
   label: string;
   labels?: string;
-  req: boolean;
+  req?: boolean;
   value?: string;
   helperText: string;
   error?: boolean;
   isSelect?: boolean;
   defaultValue?: any;
   option?: any[] | undefined;
-  isDate?: boolean;
+  isdate?: boolean;
   inputProps?: any;
   innerRef?: any;
   mask?: any;
@@ -24,7 +24,7 @@ export interface InputType {
 
 const index = (props: InputType) => {
   const classes = useStyles();
-
+  
   return (
     <Box className={classes.BoxInline} p={1}>
       <Box className={classes.BoxText} pr={1}>
@@ -37,9 +37,9 @@ const index = (props: InputType) => {
             innerRef={props.innerRef}
             size="small"
             select={props.isSelect}
-            type={props.isDate ? "date" : ""}
-            helperText={props.helperText}
-            error={props.error}
+            type={props!.isdate ? "date" : ""}
+            helperText={props.touched && props.error}
+            error={(props.touched && (props.error || false))}
             value={props.value}
             defaultValue={props.defaultValue}
             inputProps={{...props.inputProps}}

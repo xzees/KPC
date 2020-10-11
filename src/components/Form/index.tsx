@@ -18,6 +18,8 @@ import ExpectedSalary from "./ExpectedSalary";
 import { Field, reduxForm } from 'redux-form'
 import { createTextMask } from 'redux-form-input-masks';
 import FormHelperText from '@material-ui/core/FormHelperText'
+import validationForm from '../../store/Form/validationForm'
+import asyncValidate from '../../store/Form/asyncValidate'
 
 export interface IreduxRender { 
   [key: string]: any;
@@ -35,7 +37,6 @@ export interface IError {
 
 const citizenMask = createTextMask({
   pattern: '9-9999-99999-99-9',
-  // placeholder: '9',
   guide: false,
   stripMask: false
 });
@@ -43,22 +44,20 @@ const citizenMask = createTextMask({
 
 let Form = (props: any) => {
   const classes = useStyles();
-  const { handleSubmit } = props;
+  const { handleSubmit, load, pristine, reset, submitting } = props
   return (
-    <Container justifyContent={"center !important"}>
+    <Container >
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
           <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
             <Box {...BoxView}>
-              <Title />
+              <Field name="title"  component={Title} type="text"  />
               <Field name="firstName"  component={FirstName} type="text"  />
               <Field name="lastName"  component={LastName} type="text"  />
             </Box>
             <Box {...BoxView}>
               <Field name="birthday"  component={Birthday} type="text"  />
-
-              {/* <Birthday /> */}
-              <Nationality />
+              <Field name="nationality"  component={Nationality} type="text"  />
             </Box>
             <Box {...BoxView}>
               <Field name="citizen_id" {...citizenMask} component={Citizen} type="text"  />
@@ -74,8 +73,10 @@ let Form = (props: any) => {
             </Box>
             <Box {...BoxView}>
               <Field name="expected_salary"  component={ExpectedSalary} type="text"  />
+              <button type="submit" disabled={pristine || submitting}>Submit</button>
+        <button type="button" disabled={pristine || submitting} onClick={reset}>Undo Changes</button>
+
             </Box>
-            <button type="submit">Submit</button>
           </form>
         </Grid>
       </Paper>
@@ -94,9 +95,13 @@ export const renderFromHelper = ({ touched, error } : IError) => {
 Form = reduxForm({
   // a unique name for the form
   form: 'user',
-  // validate,
-  // asyncValidate,
-
+  initialValues:{
+    title: 'Mr',
+    nationality: 'Thai',
+    phone_number: '+66'
+  },
+  validate: validationForm,
+  onSubmit: asyncValidate
 })(Form)
 
 

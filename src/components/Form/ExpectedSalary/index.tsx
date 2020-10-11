@@ -12,6 +12,7 @@ const index = (props: IreduxRender) => {
         isSelect={false}
         error={props.meta!.error}
         {...props.input}
+        {...props.meta}
         {...props.custom}
     >THB
     </Input>  

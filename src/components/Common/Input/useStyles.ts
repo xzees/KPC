@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     BoxText: {
       display: 'flex',
-      alignItems: 'center !important',
+      // alignItems: 'center !important',
+      marginTop: '8px',
       "& span": {
         color: "red",
         paddingLeft: 5

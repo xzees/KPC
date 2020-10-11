@@ -11,11 +11,11 @@ const index = (props : IreduxRender) => {
             req={true}
             helperText={""}
             defaultValue={"Mr"}
-            // error={props.touched || props.error}
             isSelect={true}
             option={["Mr", "Ms"]}
             {...props.input}
             {...props.custom}
+            {...props.meta}
         />    
   );
 };

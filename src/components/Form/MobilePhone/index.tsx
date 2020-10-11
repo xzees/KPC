@@ -19,13 +19,12 @@ const Input = (props: any) => {
             <PhoneInput
             specialLabel={''}
             country={'th'}
-            inputProps={{
-              size: 'small'
+            inputStyle={{
+              borderColor: (props.touched && props.error) && "red"
             }}
             {...props}
-              // value={this.state.phone}
-              // onChange={phone => this.setState({ phone })}
             />
+            {(props.touched && props.error) && <p style={{color:'red'}} className="MuiFormHelperText-root MuiFormHelperText-contained Mui-error MuiFormHelperText-filled MuiFormHelperText-marginDense">{props.error}</p> }
         </Box>
       </Box>
     );
@@ -41,6 +40,7 @@ const index = (props: any) => {
             error={true}
             isSelect={false}
             {...props.input}
+            {...props.meta}
             {...props.custom}
         />
     )
