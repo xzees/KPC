@@ -14,7 +14,19 @@ const mapDispatchToProps = (dispatch: any) => ({
     dispatch(addUser(value))
 })
 
+const mapstateToProps = (state: any) => {
+  const {user} = state;
+  console.log(user)
+  // return {
+  //   initialValues: user.edit,
+    
+  // }
+  // return {
+  //   initialValues: state.user.edit
+  // }
+}
+
 export default connect(
-  null,
+  mapstateToProps,
   mapDispatchToProps
 )(SearchContainer)

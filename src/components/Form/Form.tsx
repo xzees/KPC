@@ -99,22 +99,13 @@ export const renderFromHelper = ({ touched, error } : IError) => {
 
 Form = reduxForm({
   form: 'user',
-  // initialValues: {
-  //   title: 'Mr',
-  //   nationality: 'Thai',
-  //   phone_number: '+66'
-  // },
+  initialValues: {
+    title: 'Mr',
+    nationality: 'Thai',
+    phone_number: '+66'
+  },
   enableReinitialize: true,
   validate: validationForm,
-},
-
-(state: any) => {
-  console.log(state) 
-  return {initialValues: state.user.edit || {
-      title: 'Mr',
-      nationality: 'Thai',
-      phone_number: '+66'
-    }} 
 }
 )
 (Form)
