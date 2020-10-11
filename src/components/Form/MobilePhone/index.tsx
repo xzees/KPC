@@ -1,24 +1,30 @@
 import React from 'react';
-import MuiPhoneNumber from 'material-ui-phone-number'
+// import MuiPhoneNumber from 'material-ui-phone-number'
 
 import { Box, TextField } from "@material-ui/core";
 import { MenuItem } from "material-ui";
 import useStyles from "../../Common/Input/useStyles";
+import PhoneInput from 'react-phone-input-2'
+import './style.css'
 
 const Input = (props: any) => {
     const classes = useStyles();
   
     return (
-      <Box className={classes.BoxInline} p={1} m={1}>
+      <Box className={classes.BoxInline} pr={1} pl={1} >
         <Box className={classes.BoxText} pr={1}>
           {props.label || props.labels} : {props.req && <span>*</span>}
         </Box>
         <Box>
-            <MuiPhoneNumber 
-            defaultCountry={'th'} 
-            variant="outlined" 
-            size={'small'} 
-            disableDropdown={false}
+            <PhoneInput
+            specialLabel={''}
+            country={'th'}
+            inputProps={{
+              size: 'small'
+            }}
+            {...props}
+              // value={this.state.phone}
+              // onChange={phone => this.setState({ phone })}
             />
         </Box>
       </Box>
@@ -26,14 +32,14 @@ const Input = (props: any) => {
   };
   
 const index = (props: any) => {
+    console.log(props);
     return (
         <Input
-            label={"Last Name"}
+            label={"Mobile Phone"}
             req={true}
             helperText={""}
             error={true}
             isSelect={false}
-            // className={touched.contactPhoneNumber && errors.contactPhoneNumber ? "has-error" : null}
             {...props.input}
             {...props.custom}
         />

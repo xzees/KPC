@@ -26,17 +26,11 @@ const index = (props: InputType) => {
   const classes = useStyles();
 
   return (
-    <Box className={classes.BoxInline} p={1} m={1}>
+    <Box className={classes.BoxInline} p={1}>
       <Box className={classes.BoxText} pr={1}>
         {props.label || props.labels} : {props.req && <span>*</span>}
       </Box>
       <Box>
-          {/* <InputMask
-            mask={props.mask}
-            disabled={false}
-            maskChar={props.maskChar}
-          >
-         {(inputProps: any) => */}
         <TextField  
             {...props}
             variant="outlined"
@@ -60,9 +54,10 @@ const index = (props: InputType) => {
               );
             })}
           </TextField>
-          {/* }
-          </InputMask>  */}
       </Box>
+      { props.children && <Box className={classes.BoxText}  pl={1}>
+          {props.children}
+      </Box>}
     </Box>
   );
 };

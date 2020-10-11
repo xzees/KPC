@@ -1,8 +1,10 @@
 import React from "react";
 import Input from "../../Common/Input";
+import { IreduxRender } from '../index'
 
+const index = (props : IreduxRender) => {
+  console.log(props);
 
-const index = (props : any) => {
   return (
         <Input
             label={"Title"}
@@ -12,8 +14,8 @@ const index = (props : any) => {
             // error={props.touched || props.error}
             isSelect={true}
             option={["Mr", "Ms"]}
-            // {...props.input}
-            // {...props.custom}
+            {...props.input}
+            {...props.custom}
         />    
   );
 };

@@ -4,18 +4,15 @@ import { IreduxRender } from '../index'
 
 const index = (props: IreduxRender) => {
   console.log(props);
-
   return (
     <Input
-        label={"Birthday"}
-        req={true}
+        label={"Passport No"}
         helperText={""}
-        error={false}
-        isDate={true}
-        inputProps={{ max: new Date().toISOString().slice(0,10) }}
+        isSelect={false}
+        error={props.meta!.error}
         {...props.input}
         {...props.custom}
-    /> 
+    />
   );
 };
 

@@ -13,7 +13,7 @@ const index = (props: IreduxRender) => {
     const classes = useStyles();
 
     return (
-        <Box className={classes.BoxInline} p={1} m={1}>
+        <Box className={classes.BoxInline} pr={1} pl={1}>
             <Box className={classes.BoxText} pr={1}>
                 Gender : 
             </Box>

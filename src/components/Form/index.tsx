@@ -3,6 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import Container from "../../layout/Container";
 import { Box, Grid } from "@material-ui/core";
 import useStyles , { BoxView } from "./useStyles";
+
 import Title from "./Title";
 import FirstName from "./FirstName";
 import LastName from "./LastName";
@@ -11,6 +12,9 @@ import Nationality from "./Nationality";
 import Citizen from "./Citizen";
 import Gender from "./Gender";
 import MobilePhone from "./MobilePhone";
+import PassportNo from "./PassportNo";
+import ExpectedSalary from "./ExpectedSalary";
+
 import { Field, reduxForm } from 'redux-form'
 import { createTextMask } from 'redux-form-input-masks';
 import FormHelperText from '@material-ui/core/FormHelperText'
@@ -36,6 +40,7 @@ const citizenMask = createTextMask({
   stripMask: false
 });
 
+
 let Form = (props: any) => {
   const classes = useStyles();
   const { handleSubmit } = props;
@@ -50,7 +55,9 @@ let Form = (props: any) => {
               <Field name="lastName"  component={LastName} type="text"  />
             </Box>
             <Box {...BoxView}>
-              <Birthday />
+              <Field name="birthday"  component={Birthday} type="text"  />
+
+              {/* <Birthday /> */}
               <Nationality />
             </Box>
             <Box {...BoxView}>
@@ -60,7 +67,13 @@ let Form = (props: any) => {
               <Field name="gender"  component={Gender} type="text"  />
             </Box>
             <Box {...BoxView}>
-              <MobilePhone />
+              <Field name="mobile_phone"  component={MobilePhone} type="text"  />
+            </Box>
+            <Box {...BoxView}>
+              <Field name="passport_no"  component={PassportNo} type="text"  />
+            </Box>
+            <Box {...BoxView}>
+              <Field name="expected_salary"  component={ExpectedSalary} type="text"  />
             </Box>
             <button type="submit">Submit</button>
           </form>

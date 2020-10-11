@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     label: {
-      padding: 10,
+      // padding: 10,
       "& span": {
         color: "red"
       }
@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme: Theme) =>
     BoxText: {
       display: 'flex',
       alignItems: 'center !important',
-      // justifyContent: 'center !important',
       "& span": {
         color: "red",
         paddingLeft: 5
