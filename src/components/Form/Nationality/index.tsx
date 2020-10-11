@@ -1,7 +1,8 @@
 import React from "react";
 import Input from "../../Common/Input";
 import nationality from '../../../mock/nationality.json'
-import { IreduxRender } from '../index'
+import { IreduxRender } from "../../../interface/user/IreduxRender";
+
 
 const index = (props: IreduxRender) => {
 

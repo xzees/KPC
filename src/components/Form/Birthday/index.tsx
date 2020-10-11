@@ -1,6 +1,6 @@
 import React from "react";
+import { IreduxRender } from "../../../interface/user/IreduxRender";
 import Input from "../../Common/Input";
-import { IreduxRender } from '../index'
 
 const index = (props: IreduxRender) => {
 

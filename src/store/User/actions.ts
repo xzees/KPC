@@ -2,7 +2,8 @@ import {
   ADD_USER,
   UPDATE_USER,
   GET_USER,
-  DELETE_USER
+  DELETE_USER,
+  GET_USER_BY_ID
 } from './types';
 
 export const addUser = (data: any) => ({
@@ -15,13 +16,18 @@ export const updateUser = (data: any) => ({
   payload: data
 });
 
-export const getUser = (data: any) => ({
+export const getUser = () => ({
   type: GET_USER,
-  payload: data
+  // payload: data
 });
 
 export const deleteUser = (data: any) => ({
   type: DELETE_USER,
+  payload: data
+});
+
+export const getUserById = (data: any) => ({
+  type: GET_USER_BY_ID,
   payload: data
 });
 

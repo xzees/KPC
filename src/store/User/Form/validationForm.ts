@@ -1,15 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { Iformvaild } from '../../../interface/user/Iformvaild'
 
-interface Iformvaild {
-    title: string;
-    firstName: string;
-    lastName: string;
-    birthday: string;
-    mobile_phone: string;
-    expected_salary: string;
-    citizen_id: string;
-}
 
 const validate = (values: Iformvaild) => {
     const errors: any = {}

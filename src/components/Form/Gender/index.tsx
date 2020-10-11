@@ -6,7 +6,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { Box, TextField } from "@material-ui/core";
 import useStyles from '../../Common/Input/useStyles';
-import { IreduxRender } from '../index'
+import { IreduxRender } from "../../../interface/user/IreduxRender";
+
 
 
 const index = (props: IreduxRender) => {

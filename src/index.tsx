@@ -15,7 +15,7 @@ const Root = () => (
     <MuiThemeProvider muiTheme={lightMuiTheme}>
       <App />
     </MuiThemeProvider>
-  </Provider>
+  </Provider> 
 );
 
 const rootElement = document.getElementById("root");

@@ -21,10 +21,10 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import validationForm from '../../store/User/Form/validationForm'
 import asyncValidate from '../../store/User/Form/asyncValidate'
 import Layout from '../Common/Input/layout'
-import {
-    IreduxRender,
-    IError
-} from './index'
+import { IError } from "../../interface/user/IreduxRender";
+import { useSelector } from "react-redux";
+import Tables from '../Tables'
+
 
 const citizenMask = createTextMask({
   pattern: '9-9999-99999-99-9',
@@ -36,6 +36,8 @@ const citizenMask = createTextMask({
 let Form = (props: any) => {
   const classes = useStyles();
   const { handleSubmit, load, pristine, reset, submitting } = props
+  
+
   return (
     <Container >
       <Paper className={classes.paper}>
@@ -80,6 +82,7 @@ let Form = (props: any) => {
           </form>
         </Grid>
       </Paper>
+      <Tables />
     </Container>
   );
 };
@@ -92,16 +95,29 @@ export const renderFromHelper = ({ touched, error } : IError) => {
   }
 }
 
+
+
 Form = reduxForm({
   form: 'user',
-  initialValues:{
-    title: 'Mr',
-    nationality: 'Thai',
-    phone_number: '+66'
-  },
+  // initialValues: {
+  //   title: 'Mr',
+  //   nationality: 'Thai',
+  //   phone_number: '+66'
+  // },
+  enableReinitialize: true,
   validate: validationForm,
-//   onSubmit: asyncValidate
-})(Form)
+},
+
+(state: any) => {
+  console.log(state) 
+  return {initialValues: state.user.edit || {
+      title: 'Mr',
+      nationality: 'Thai',
+      phone_number: '+66'
+    }} 
+}
+)
+(Form)
 
 
 export default Form;
