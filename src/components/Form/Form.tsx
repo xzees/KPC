@@ -21,19 +21,10 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import validationForm from '../../store/User/Form/validationForm'
 import asyncValidate from '../../store/User/Form/asyncValidate'
 import Layout from '../Common/Input/layout'
-export interface IreduxRender { 
-  [key: string]: any;
-  input?: any;
-  label?: any;
-  meta?: IError | undefined;
-  custom?: any
-  rest?: any;
-}
-
-export interface IError {
-  touched: any;
-  error: any;
-}
+import {
+    IreduxRender,
+    IError
+} from './index'
 
 const citizenMask = createTextMask({
   pattern: '9-9999-99999-99-9',
