@@ -1,58 +1,3 @@
-// import React from "react";
-// import Table, {
-//   TableBody,
-//   TableRowColumn,
-//   TableHeader,
-//   TableRow
-// } from "material-ui/Table";
-// import Paper from "material-ui/Paper";
-// import { connect, useDispatch, useSelector } from "react-redux";
-// import { ITables } from "../../interface/user/ITables";
-// import { Button } from "@material-ui/core";
-// import { addUser, getUser } from "../../store/User/actions";
-
-// const Tables = (props: any) => {
-//   // const dispatch = useDispatch()
-//   // const state: any = dispatch(getUser());
-//   // console.log(state.users);
-//   const values = useSelector((state: any) => state.user);
-//   console.log(values);
-//   return (
-//   <Paper>
-//     <Table>
-//       <TableHeader>
-//         <TableRow>
-//           <TableRowColumn>Name</TableRowColumn>
-//           <TableRowColumn>Gender</TableRowColumn>
-//           <TableRowColumn>Mobile Phone</TableRowColumn>
-//           <TableRowColumn>Nationality</TableRowColumn>
-//           <TableRowColumn></TableRowColumn>
-//         </TableRow>
-//       </TableHeader>
-//       <TableBody>
-//         {(values.users).map((n: any) => {
-//           return (
-//             <TableRow key={`${n.firstName} ${n.lastName}`}>
-//               <TableRowColumn>{`${n.firstName} ${n.lastName}`}</TableRowColumn>
-//               <TableRowColumn>{n.gender}</TableRowColumn>
-//               <TableRowColumn>{n.mobile_phone}</TableRowColumn>
-//               <TableRowColumn>{n.nationality}</TableRowColumn>
-//               <TableRowColumn>
-//                 <Button size="small" style={{margin:"2px"}}>
-//                   edit
-//                 </Button>
-//                 <Button size="medium" style={{margin:"2px"}}>
-//                   delete
-//                 </Button>
-//               </TableRowColumn>
-//             </TableRow>
-//           );
-//         })}
-//       </TableBody>
-//     </Table>
-//   </Paper> )
-// };
-
 
 // export default Tables;
 
@@ -362,7 +307,6 @@ export default function EnhancedTable() {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row: Data, index: any) => {
-                  // console.log(row);
                   const isItemSelected = isSelected(row.create_date);
                   const labelId = `enhanced-table-checkbox-${index}`;
 

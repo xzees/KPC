@@ -16,14 +16,9 @@ const mapDispatchToProps = (dispatch: any) => ({
 
 const mapstateToProps = (state: any) => {
   const {user} = state;
-  console.log(user)
-  // return {
-  //   initialValues: user.edit,
-    
-  // }
-  // return {
-  //   initialValues: state.user.edit
-  // }
+  return {
+    initialValues: user.edit,
+  }
 }
 
 export default connect(
