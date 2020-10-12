@@ -68,12 +68,12 @@ let Form = (props: any) => {
               <Field name="expected_salary"  component={ExpectedSalary} type="text"  />
               <Layout>
                 <Box pr={1} >
-                <Button disabled={pristine || submitting} type={'submit'} variant="outlined" color="primary" >
+                <Button  type={'submit'} variant="outlined" color="primary" >
                   Submit
                 </Button>
                 </Box>
                 <Box >
-                <Button disabled={pristine || submitting} onClick={reset} variant="outlined" color="secondary" >
+                <Button  onClick={reset} variant="outlined" color="secondary" >
                   Undo
                 </Button>
                 </Box>
@@ -99,11 +99,6 @@ export const renderFromHelper = ({ touched, error } : IError) => {
 
 Form = reduxForm({
   form: 'user',
-  initialValues: {
-    title: 'Mr',
-    nationality: 'Thai',
-    phone_number: '+66'
-  },
   enableReinitialize: true,
   validate: validationForm,
 }

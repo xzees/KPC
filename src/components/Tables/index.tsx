@@ -23,8 +23,9 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { useDispatch, useSelector } from 'react-redux';
+import { initialize } from 'redux-form'
 import { Button } from '@material-ui/core';
-import { getUserById } from "../../store/User/actions";
+import { deleteUser, getUserById } from "../../store/User/actions";
 
 
 interface Data {
@@ -220,8 +221,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function EnhancedTable() {
   const dispatch = useDispatch();
-  const rows_s = useSelector((state: any) => state.user);
-  const rows = rows_s!.users;
+  let rows_s = useSelector((state: any) => state.user);
+  let row_s = rows_s!.users;
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('create_date');
@@ -229,6 +230,7 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rows, setRows] = React.useState(row_s);
 
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -283,6 +285,8 @@ export default function EnhancedTable() {
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
+
+  
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -313,7 +317,6 @@ export default function EnhancedTable() {
                   return (
                     <TableRow
                       hover
-                      // onClick={(event) => handleClick(event, row.create_date)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -336,7 +339,7 @@ export default function EnhancedTable() {
                       <TableCell align="right">
                       <Button
                         onClick={(e: any)=>{
-                          dispatch(getUserById(index))
+                          dispatch(initialize('user',row))
                         }} 
                         style={{marginRight: '5px'}} 
                         variant="outlined" 
@@ -345,7 +348,12 @@ export default function EnhancedTable() {
                       >
                         EDIT
                       </Button>
-                      <Button variant="outlined" size="small" color="secondary" >
+                      <Button 
+                      onClick={()=>{
+                        const value = dispatch(deleteUser(index));
+                        console.log(value)
+                      }}
+                      variant="outlined" size="small" color="secondary" >
                         DELETE
                       </Button>
                       </TableCell>

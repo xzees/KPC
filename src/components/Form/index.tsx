@@ -14,12 +14,13 @@ const mapDispatchToProps = (dispatch: any) => ({
     dispatch(addUser(value))
 })
 
-const mapstateToProps = (state: any) => {
-  const {user} = state;
-  return {
-    initialValues: user.edit,
-  }
-}
+const mapstateToProps = (state: any) => ({
+  initialValues: {
+    title: 'Mr',
+    nationality: 'Thai',
+    phone_number: '+66'
+  },
+})
 
 export default connect(
   mapstateToProps,

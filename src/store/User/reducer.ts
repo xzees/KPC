@@ -32,10 +32,12 @@ export const userReducer = (
       state.users[key] = {...action.payload,...state.users[key]}
       return state;
     case DELETE_USER: 
-      const keys = action.payload.id;
-      delete state.users[keys];
-      localStorage.setItem('Storage', JSON.stringify(state.users));
-      return state;
+      const returns = {
+        ...state,
+        users: state.users.filter((item: any, index: any) => index !== action.payload)
+      }
+        localStorage.setItem('Storage', JSON.stringify(returns.users));
+      return returns;
     default:
       return { ...state };
   }
