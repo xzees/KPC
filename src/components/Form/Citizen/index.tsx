@@ -8,7 +8,7 @@ const index = (props: IreduxRender) => {
   return (
     <Input
         label={'Citizen ID'}
-        req="false"
+        req={false}
         helperText={''}
         error={props.meta!.error}
         inputProps={{

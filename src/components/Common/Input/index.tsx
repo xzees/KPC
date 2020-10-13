@@ -6,7 +6,10 @@ import { InputType } from "../../../interface/user/InputType";
 
 const index = (props: InputType) => {
   const classes = useStyles();
-  
+  const type = props!.isdate ? "date" : "";
+  const error = (props.touched && (props.error || false));
+  const helperText = props.touched && props.error
+
   return (
     <Box className={classes.BoxInline} p={1}>
       <Box className={classes.BoxText} pr={1}>
@@ -19,9 +22,9 @@ const index = (props: InputType) => {
             innerRef={props.innerRef}
             size="small"
             select={props.isSelect}
-            type={props!.isdate ? "date" : ""}
-            helperText={props.touched && props.error}
-            error={(props.touched && (props.error || false))}
+            type={type}
+            helperText={helperText}
+            error={error}
             value={props.value}
             defaultValue={props.defaultValue}
             inputProps={{...props.inputProps}}

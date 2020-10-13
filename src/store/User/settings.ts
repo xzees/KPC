@@ -1,11 +1,10 @@
-
-
-
-const userJson = localStorage.getItem('Storage');
 const DEFAULT_SETTINGS = {
-    users: userJson !== null ? JSON.parse(userJson): [],
+    
+    users: [],
     edit: {
         title: 'Mr',
+        firstName: 'test',
+        lastName: 'test',
         nationality: 'Thai',
         phone_number: '+66'
     }

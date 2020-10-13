@@ -8,6 +8,7 @@ const index = (props: IreduxRender) => {
     <Input
         label={"Passport No"}
         helperText={""}
+        req={false}
         isSelect={false}
         error={props.meta!.error}
         {...props.input}

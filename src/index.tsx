@@ -6,15 +6,19 @@ import App from "./App";
 
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import { MuiThemeProvider, lightBaseTheme } from "material-ui/styles";
+import { PersistGate } from 'redux-persist/integration/react'
 
+const initialState = {}
 const lightMuiTheme = getMuiTheme(lightBaseTheme);
-const store = configureStore();
+const { store, persistor } = configureStore(initialState)
 
 const Root = () => (
   <Provider store={store}>
-    <MuiThemeProvider muiTheme={lightMuiTheme}>
-      <App />
-    </MuiThemeProvider>
+    <PersistGate loading={null} persistor={persistor}>
+      <MuiThemeProvider muiTheme={lightMuiTheme}>
+        <App />
+      </MuiThemeProvider>
+    </PersistGate>
   </Provider> 
 );
 

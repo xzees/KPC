@@ -1,21 +1,22 @@
 import {
-  UserActionTypes,
   ADD_USER,
   GET_USER,
-  UPDATE_USER,
+  RESET_USER,
   DELETE_USER,
   GET_USER_BY_ID
 } from './types';
-
+import { REHYDRATE } from 'redux-persist';
 import DEFAULT_SETTINGS from './settings';
 
 const initialState: any = DEFAULT_SETTINGS;
 
 export const userReducer = (
-  state: any = initialState,
-  action: UserActionTypes
+  state: any =initialState,
+  action: any
 ): any => {
   switch (action.type) {
+    case REHYDRATE:
+      return state;
     case ADD_USER:
       if(action.payload!.create_date == undefined){
         action.payload.create_date = Date.now()
@@ -28,20 +29,18 @@ export const userReducer = (
             }
             return value
           })
-        ]
+        ],
+        state.edit = initialState.edit;
       }
-      state = initialState;
-      localStorage.setItem('Storage', JSON.stringify(state.users));
       return state;
     case GET_USER:
+      state.edit = initialState.edit;
       return state;
-    case GET_USER_BY_ID:      
+    case GET_USER_BY_ID:
       state.edit = {...action.payload}
       return state;
-    case UPDATE_USER:
-      const key = action.payload.id;
-      delete action.payload.id
-      state.users[key] = {...action.payload,...state.users[key]}
+    case RESET_USER:
+      state.edit = initialState.edit;
       return state;
     case DELETE_USER: 
       const returns = {
@@ -51,7 +50,6 @@ export const userReducer = (
           ...state.users.slice(action.payload +1)
         ]
       }
-      localStorage.setItem('Storage', JSON.stringify(returns.users));
       return returns;
     default:
       return { ...state };

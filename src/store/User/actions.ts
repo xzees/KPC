@@ -1,6 +1,6 @@
 import {
   ADD_USER,
-  UPDATE_USER,
+  RESET_USER,
   GET_USER,
   DELETE_USER,
   GET_USER_BY_ID
@@ -11,9 +11,8 @@ export const addUser = (data: any) => ({
   payload: data
 });
 
-export const updateUser = (data: any) => ({
-  type: UPDATE_USER,
-  payload: data
+export const resetUser = () => ({
+  type: RESET_USER,
 });
 
 export const getUser = () => ({
