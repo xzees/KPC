@@ -19,6 +19,13 @@ export const userReducer = (
     case REHYDRATE:
       return state;
     case ADD_USER:
+      if(action.payload.firstName == undefined){
+        return {
+          ...state,
+          edit: initialState.edit,
+          mode: initialState.mode
+        }; 
+      }
       if(action.payload!.create_date == undefined){
         state.users.push({
           ...action.payload,
@@ -33,43 +40,32 @@ export const userReducer = (
             return value
           })
         ];
-        console.log(action.payload);
       }
 
       return {
         ...state,
         edit: initialState.edit,
+        mode: initialState.mode,
       };
     case GET_USER:
       return state;
     case GET_USER_BY_ID:
       state.edit = action.payload
+      state.mode = 'edit'
       return state;
     case RESET_USER:
       state.edit = initialState.edit;
+      state.mode = initialState.mode;
+
       return state;
     case DELETE_USER: 
-      if(Array.isArray(action.payload)) {
-        for (var i = action.payload.length -1; i >= 0; i--) {
-          state = {
-            ...state,
-            users: [
-              ...state.users.slice(0,action.payload[i]),
-              ...state.users.slice(action.payload[i] +1)
-            ]
-          }
-        }
-
-      }else{
         return {
           ...state,
           users: [
-            ...state.users.slice(0,action.payload),
-            ...state.users.slice(action.payload +1)
+            ...state.users.filter((v: any)=>!action.payload.includes(v.create_date))
           ]
         }
-      }
-      return state;
+
     default:
       return { ...state };
   }

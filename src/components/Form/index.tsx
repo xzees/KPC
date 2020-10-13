@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { initialize } from 'redux-form'
+import { initialize, reset } from 'redux-form'
 import Form from './Form'
 import {
   addUser, resetUser,
@@ -23,10 +23,12 @@ const mapDispatchToProps = (dispatch: any) => ({
   handleSubmits: (value: any) => {
     dispatch(addUser(value))
     dispatch(initialize('user',DEFAULT_SETTINGS.edit))
+    reset();
   },
   handleCancel: () => {
     dispatch(resetUser())
     dispatch(initialize('user',DEFAULT_SETTINGS.edit))
+    reset();
   }
 })
 

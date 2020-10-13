@@ -219,6 +219,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const EnhancedTable = ({rowsProps,deleteProps,editProps} : any) => {
   let rows_s = useSelector((state: any) => state.user);
   let rows = rows_s!.users;
+  // console.log(rows_s.mode);
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('create_date');
@@ -235,7 +236,7 @@ const EnhancedTable = ({rowsProps,deleteProps,editProps} : any) => {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n: any , index: any) => index);
+      const newSelecteds = rows.map((n: any , index: any) => n.create_date);
       
       setSelected(newSelecteds);
       return;
@@ -308,7 +309,7 @@ const EnhancedTable = ({rowsProps,deleteProps,editProps} : any) => {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row: Data, index: any) => {
-                  const isItemSelected = isSelected(index);
+                  const isItemSelected = isSelected(row.create_date);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
@@ -317,12 +318,12 @@ const EnhancedTable = ({rowsProps,deleteProps,editProps} : any) => {
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={index}
+                      key={row.create_date}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
                         <Checkbox
-                        onClick={(event) => handleClick(event, index)}
+                        onClick={(event) => handleClick(event, row.create_date)}
                           checked={isItemSelected}
                           inputProps={{ 'aria-labelledby': labelId }}
                         />
@@ -345,13 +346,13 @@ const EnhancedTable = ({rowsProps,deleteProps,editProps} : any) => {
                       >
                         EDIT
                       </Button>
-                      <Button 
+                      { (rows_s.mode == "form") && <Button 
                       onClick={()=>{
-                        deleteProps(index)
+                        deleteProps([row.create_date])
                       }}
                       variant="outlined" size="small" color="secondary" >
                         DELETE
-                      </Button>
+                      </Button>}
                       </TableCell>
                     </TableRow>
                   );

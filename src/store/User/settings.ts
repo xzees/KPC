@@ -67,7 +67,8 @@ const DEFAULT_SETTINGS = {
         title: 'Mr',
         nationality: 'Thai',
         mobile_phone: '+66'
-    }
+    },
+    mode: "form"
 };
 
 export default DEFAULT_SETTINGS

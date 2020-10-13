@@ -84,7 +84,9 @@ let Form = (props: any) => {
                   </Button>
                 </Box>
                 <Box >
-                  <Button  onClick={reset} variant="outlined" color="secondary" >
+                  <Button  onClick={()=>{
+                    props.handleCancel()
+                  }} variant="outlined" color="secondary" >
                     Undo
                   </Button>
                 </Box>
