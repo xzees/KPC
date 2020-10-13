@@ -1,7 +1,4 @@
-
-// export default Tables;
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { createStyles, lighten, makeStyles, Theme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -22,11 +19,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { initialize } from 'redux-form'
 import { Button } from '@material-ui/core';
-import { deleteUser, getUserById } from "../../store/User/actions";
-
+import { deleteUser, getUser, getUserById } from "../../store/User/actions";
 
 interface Data {
   firstName : any;
@@ -219,10 +215,11 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function EnhancedTable() {
-  const dispatch = useDispatch();
+
+
+const EnhancedTable = ({rowsProps,deleteProps,editProps} : any) => {
   let rows_s = useSelector((state: any) => state.user);
-  let row_s = rows_s!.users;
+  let rows = rows_s!.users;
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('create_date');
@@ -230,7 +227,6 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [rows, setRows] = React.useState(row_s);
 
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -284,8 +280,6 @@ export default function EnhancedTable() {
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-
-
   
   return (
     <div className={classes.root}>
@@ -339,7 +333,7 @@ export default function EnhancedTable() {
                       <TableCell align="right">
                       <Button
                         onClick={(e: any)=>{
-                          dispatch(initialize('user',row))
+                          editProps(row)
                         }} 
                         style={{marginRight: '5px'}} 
                         variant="outlined" 
@@ -350,8 +344,7 @@ export default function EnhancedTable() {
                       </Button>
                       <Button 
                       onClick={()=>{
-                        const value = dispatch(deleteUser(index));
-                        console.log(value)
+                        deleteProps(index)
                       }}
                       variant="outlined" size="small" color="secondary" >
                         DELETE
@@ -382,3 +375,25 @@ export default function EnhancedTable() {
     </div>
   );
 }
+
+
+const mapStateToProps = (state: any) => {
+  return {
+    rowsProps: state.user.users
+  }
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    deleteProps: (data: any) => dispatch(deleteUser(data)),
+    editProps: (data: any) => { 
+      dispatch(initialize('user',data))
+      dispatch(getUserById(data))
+    }
+  }
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EnhancedTable)
