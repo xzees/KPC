@@ -1,5 +1,4 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
 import { Iformvaild } from '../../../interface/user/Iformvaild'
 
 
@@ -33,8 +32,6 @@ const validate = (values: Iformvaild) => {
     // if (!values.expected_salary) {
     //     errors.expected_salary = 'Required'
     // } 
-    
-
 
     // if (values.citizen_id && ((values.citizen_id as string) || "").replace(/\-/g, "").length != 13) {
     //     errors.citizen_id = 'Invalid Citizen ID, must be 13 digits'

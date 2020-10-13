@@ -16,17 +16,20 @@ import PassportNo from "./PassportNo";
 import ExpectedSalary from "./ExpectedSalary";
 
 import { Field, reduxForm } from 'redux-form'
-import { createTextMask } from 'redux-form-input-masks';
+import { createTextMask , createNumberMask } from 'redux-form-input-masks';
 import validationForm from '../../store/User/Form/validationForm'
 import Layout from '../Common/Input/layout'
 import { useSelector } from "react-redux";
-import Tables from '../Tables'
 
 const citizenMask = createTextMask({
   pattern: '9-9999-99999-99-9',
   guide: false,
   stripMask: false
 });
+
+const currencyMask = createNumberMask({
+  decimalPlaces: 2,
+})
 
 let Form = (props: any) => {
   const classes = useStyles();
@@ -60,7 +63,7 @@ let Form = (props: any) => {
               <Field name="passport_no"  component={PassportNo} type="text"  />
             </Box>
             <Box {...BoxView}>
-              <Field name="expected_salary"  component={ExpectedSalary} type="text"  />
+              <Field name="expected_salary" {...currencyMask}  component={ExpectedSalary} type="text"  />
               { store.edit.create_date && <Layout>
                 <Box pr={1} >
                   <Button  type={'submit'} variant="outlined" color="primary" >
@@ -90,7 +93,6 @@ let Form = (props: any) => {
           </form>
         </Grid>
       </Paper>
-      <Tables />
     </Container>
   );
 };

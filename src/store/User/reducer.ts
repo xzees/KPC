@@ -1,4 +1,5 @@
 import {
+  UserActionTypes,
   ADD_USER,
   GET_USER,
   RESET_USER,
@@ -11,7 +12,7 @@ import DEFAULT_SETTINGS from './settings';
 const initialState: any = DEFAULT_SETTINGS;
 
 export const userReducer = (
-  state: any =initialState,
+  state: any = initialState,
   action: any
 ): any => {
   switch (action.type) {
@@ -29,15 +30,17 @@ export const userReducer = (
             }
             return value
           })
-        ],
-        state.edit = initialState.edit;
+        ];
       }
-      return state;
+
+      return {
+        ...state,
+        edit: initialState.edit,
+      };
     case GET_USER:
-      state.edit = initialState.edit;
       return state;
     case GET_USER_BY_ID:
-      state.edit = {...action.payload}
+      state.edit = action.payload
       return state;
     case RESET_USER:
       state.edit = initialState.edit;

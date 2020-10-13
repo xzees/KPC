@@ -148,11 +148,22 @@ const useToolbarStyles = makeStyles((theme: Theme) =>
 
 interface EnhancedTableToolbarProps {
   numSelected: number;
+  [key: string]: any;
 }
 
 const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
   const classes = useToolbarStyles();
   const { numSelected } = props;
+  let rows_s = useSelector((state: any) => state.user);
+  let rows = rows_s!.users;
+  
+  const delClick = () => {
+    return rows.forEach((x: any, index: any) => {
+        if (props.selected.includes(x.create_date)) {
+            props.deleteProps(index)
+        }
+    })
+  }
 
   return (
     <Toolbar
@@ -171,7 +182,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
       )}
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton aria-label="delete">
+          <IconButton onClick={delClick} aria-label="delete">
             <DeleteIcon />
           </IconButton>
         </Tooltip>
@@ -271,11 +282,10 @@ const EnhancedTable = ({rowsProps,deleteProps,editProps} : any) => {
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-  
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar selected={selected} rows={rows} deleteProps={deleteProps} numSelected={selected.length} />
         <TableContainer>
           <Table
             className={classes.table}
@@ -366,7 +376,6 @@ const EnhancedTable = ({rowsProps,deleteProps,editProps} : any) => {
     </div>
   );
 }
-
 
 const mapStateToProps = (state: any) => {
   return {
