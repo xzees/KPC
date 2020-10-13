@@ -158,11 +158,8 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
   let rows = rows_s!.users;
   
   const delClick = () => {
-    return rows.forEach((x: any, index: any) => {
-        if (props.selected.includes(x.create_date)) {
-            props.deleteProps(index)
-        }
-    })
+    props.deleteProps(props.selected)
+    props.setSelected([]);
   }
 
   return (
@@ -238,7 +235,7 @@ const EnhancedTable = ({rowsProps,deleteProps,editProps} : any) => {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n: any) => n.create_date);
+      const newSelecteds = rows.map((n: any , index: any) => index);
       
       setSelected(newSelecteds);
       return;
@@ -285,7 +282,12 @@ const EnhancedTable = ({rowsProps,deleteProps,editProps} : any) => {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar selected={selected} rows={rows} deleteProps={deleteProps} numSelected={selected.length} />
+        <EnhancedTableToolbar 
+          selected={selected} 
+          setSelected={setSelected} 
+          deleteProps={deleteProps} 
+          numSelected={selected.length} 
+        />
         <TableContainer>
           <Table
             className={classes.table}
@@ -306,7 +308,7 @@ const EnhancedTable = ({rowsProps,deleteProps,editProps} : any) => {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row: Data, index: any) => {
-                  const isItemSelected = isSelected(row.create_date);
+                  const isItemSelected = isSelected(index);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
@@ -315,12 +317,12 @@ const EnhancedTable = ({rowsProps,deleteProps,editProps} : any) => {
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.create_date}
+                      key={index}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
                         <Checkbox
-                        onClick={(event) => handleClick(event, row.create_date)}
+                        onClick={(event) => handleClick(event, index)}
                           checked={isItemSelected}
                           inputProps={{ 'aria-labelledby': labelId }}
                         />

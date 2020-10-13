@@ -20,8 +20,10 @@ export const userReducer = (
       return state;
     case ADD_USER:
       if(action.payload!.create_date == undefined){
-        action.payload.create_date = Date.now()
-        state.users.push(action.payload);
+        state.users.push({
+          ...action.payload,
+          create_date: Date.now()
+        });
       }else{
         state.users = [
           ...state.users.map( (value: any) => {
@@ -31,6 +33,7 @@ export const userReducer = (
             return value
           })
         ];
+        console.log(action.payload);
       }
 
       return {
@@ -46,14 +49,27 @@ export const userReducer = (
       state.edit = initialState.edit;
       return state;
     case DELETE_USER: 
-      const returns = {
-        ...state,
-        users: [
-          ...state.users.slice(0,action.payload),
-          ...state.users.slice(action.payload +1)
-        ]
+      if(Array.isArray(action.payload)) {
+        for (var i = action.payload.length -1; i >= 0; i--) {
+          state = {
+            ...state,
+            users: [
+              ...state.users.slice(0,action.payload[i]),
+              ...state.users.slice(action.payload[i] +1)
+            ]
+          }
+        }
+
+      }else{
+        return {
+          ...state,
+          users: [
+            ...state.users.slice(0,action.payload),
+            ...state.users.slice(action.payload +1)
+          ]
+        }
       }
-      return returns;
+      return state;
     default:
       return { ...state };
   }
